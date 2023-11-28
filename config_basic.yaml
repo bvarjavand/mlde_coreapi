@@ -1,0 +1,22 @@
+name: "basic_managed_example"
+
+hyperparameters:
+   epochs: 5
+   batch_size: 64
+   test_batch_size: 1000
+   learning_rate: 0.0001
+   gamma: 0.7
+   n_filters1: 8
+   n_filters2: 8
+   dropout1: 0.2
+   dropout2: 0.2
+
+entrypoint:  python3 managed.py 
+max_restarts: 0
+searcher:
+   name: single
+   max_length: 1
+   metric: val_loss
+   
+workspace: "Bijan"
+project: "test"

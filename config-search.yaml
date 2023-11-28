@@ -1,0 +1,44 @@
+name: "manged_example"
+
+entrypoint: >-
+  python3 -m determined.launch.torch_distributed
+  python3 distributed_search.py
+
+resources:
+  slots_per_trial: 2
+
+searcher:
+   name: single
+   metric: test_loss
+   max_length: 1
+   
+hyperparameters:
+   epochs: 5
+   batch_size: 64
+   test_batch_size: 1000
+   gamma: 0.7
+   learning_rate:
+     type: double
+     minval: .0001
+     maxval: 1.0
+   n_filters1:
+     type: int
+     minval: 8
+     maxval: 64
+   n_filters2:
+     type: int
+     minval: 8
+     maxval: 72
+   dropout1:
+     type: double
+     minval: .2
+     maxval: .8
+   dropout2:
+     type: double
+     minval: .2
+     maxval: .8
+
+max_restarts: 0
+
+workspace: "Bijan"
+project: "test"
